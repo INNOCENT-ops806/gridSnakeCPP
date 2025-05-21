@@ -3,17 +3,28 @@
 using namespace std;
 
 Color green = {173, 204, 96, 255};
-Color darkGreen = {43, 51, 24, 255};
+Color darkGreen = {123, 50, 250, 235};
 
 int cellSize = 30;
 int cellCount = 25;
-
 class Food{
 public:
-  Vector2 position = {5,6};
+  Vector2 position;
+
+  Food(){
+    position = GenerateRandomPos();
+
+  };
 
   void draw(){
     DrawRectangle(position.x * cellSize,position.y * cellSize,cellSize,cellSize,darkGreen);
+  }
+
+  Vector2 GenerateRandomPos(){
+    float x = GetRandomValue(0,cellCount -1);
+    float y = GetRandomValue(0,cellSize -1);
+
+    return Vector2{x,y};
   }
 
 };
