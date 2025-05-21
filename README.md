@@ -12,11 +12,11 @@ I plan to make the game more fun and visually appealing in the future hoping I c
 
 ## Technology Used
 
-The game is fully built in C++
+The game is fully built in C++ <img src="https://img.shields.io/badge/C%2B%2B-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white">
 
 ## Screenshot
 
-## **Screenshot will be provided as the game improves**
+#### **Screenshots will be provided as the game improves**
 
 ## Contribution
 
