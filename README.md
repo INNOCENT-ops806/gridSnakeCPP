@@ -12,7 +12,7 @@ I plan to make the game more fun and visually appealing in the future hoping I c
 
 ## Technology Used
 
-<p style="font-family: 'Fira Code', monospace; color: aqua; font-weight: bolder; font-size: 35px;">The game is fully built in C++</p>
+## `The game is fully built in C++`
 
 ## Screenshot
 
