@@ -18,7 +18,7 @@ I plan to make the game more fun and visually appealing in the future hoping I c
 
 #### Game Screenshot in terminal
 
-![game Screenshot in brothers](Images/gridGameScreenShot.png)
+![game Screenshot in brothers](Images/GridSnakeGamev1.png)
 
 ## Contribution
 
@@ -28,7 +28,3 @@ If you want to improve or just help me in any way please don't be afraid I am no
 
 you can find how to make this cool game here: [YouTube](https://www.youtube.com/watch?v=LGqsnM_WEK4)
 oh and the game was created using a cool game engine called raylib and you can find it here: [raylib](https://github.com/raysan5/raylib)
-
-## Encountered Problems
-
-during testing I Encountered a frame problem, the lower line(frame is not showing together with the score) but I think it is because I am using WSL(Window Subsystem For Linux) Arch distro so that might be interfering with how the game graphics are being rendered. Feel free to correct me if I am wrong or if you have possible solutions, Thanks for reading :)
