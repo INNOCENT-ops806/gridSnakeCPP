@@ -2,7 +2,6 @@
 #include <iostream>
 #include <raylib.h>
 #include <raymath.h>
-
 using namespace std;
 static bool allowMove = false;
 Color green = {173, 204, 96, 255};
@@ -108,23 +107,17 @@ public:
   int score = 0;
   Sound eatSound;
   Sound wallSound;
-  Music bgMusic;
 
   Game() {
     InitAudioDevice();
     eatSound = LoadSound("Sounds/sharp-pop-328170.mp3");
     wallSound = LoadSound("Sounds/game-over-arcade-6435.mp3");
-
-    bgMusic = LoadMusicStream("Sounds/game-music-loop.mp3");
-    PlayMusicStream(bgMusic);
-    bgMusic.looping = true;
   }
 
   ~Game() {
 
     UnloadSound(eatSound);
     UnloadSound(wallSound);
-    UnloadMusicStream(bgMusic);
     CloseAudioDevice();
   }
 
@@ -134,7 +127,6 @@ public:
   }
 
   void Update() {
-    UpdateMusicStream(bgMusic);
     if (running) {
       snake.Update();
       CheckCollisionWithFood();
@@ -162,7 +154,6 @@ public:
   }
 
   void GameOver() {
-    StopMusicStream(bgMusic);
     snake.Reset();
     food.position = food.GenerateRandomPos(snake.body);
     running = false;
@@ -183,10 +174,7 @@ public:
 int main() {
 
   cout << "Starting the game" << endl;
-
-  InitWindow(2 * offset + cellSize * cellCount,
-             2 * offset + cellSize * cellCount, "Retro Snake");
-  ;
+  InitWindow(1000, 450, "Retro snake Game");
   SetTargetFPS(60);
 
   Game game = Game();
@@ -194,11 +182,9 @@ int main() {
   while (WindowShouldClose() == false) {
 
     BeginDrawing();
-    if (!IsMusicStreamPlaying(game.bgMusic)) {
-      PlayMusicStream(game.bgMusic);
-    }
+
     if (eventTriggered(0.2)) {
-      allowMove = true; // THIS I DID NOT SEE
+      allowMove = true;
       game.Update();
     }
 
@@ -226,11 +212,10 @@ int main() {
       allowMove = false;
     }
 
-    ClearBackground(green);
-    DrawRectangleLinesEx(Rectangle{(float)offset - 5, (float)offset - 5,
-                                   (float)cellSize * cellCount + 10,
-                                   (float)cellSize * cellCount + 10},
-                         5, black);
+    ClearBackground(DARKPURPLE);
+    DrawRectangleLinesEx(
+        {5, 5, (float)GetScreenWidth() - 10, (float)GetScreenHeight() - 10}, 5,
+        BLACK);
     DrawText("Retro Snake", offset - 5, 20, 40, black);
     DrawText(TextFormat("%i", game.score), offset - 5,
              offset + cellSize * cellCount + 10, 40, darkGreen);
