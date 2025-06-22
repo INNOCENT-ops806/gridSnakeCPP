@@ -19,7 +19,7 @@ int main() {
   Splash *splash = new Splash();
   Game *game = nullptr;
 
-  while (!WindowShouldClose()) {
+  while (!WindowShouldClose() && !IsKeyPressed(KEY_Q)) {
     if (!splashComplete) {
       if (splash->isComplete()) {
         splashComplete = true;
