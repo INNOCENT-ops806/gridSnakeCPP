@@ -4,33 +4,49 @@
 #include <raylib.h>
 
 int main() {
-  int const screenwidth = 800;
-  int const screenheight = 600;
-  InitWindow(screenwidth, screenwidth, "Retro Snake Game");
+  int const screenwidth = 1366;
+  int const screenheight = 760;
+
+  InitWindow(screenwidth, screenheight, "Retro Snake Game");
   SetTargetFPS(60);
 
   if (!IsWindowFullscreen()) {
     ToggleFullscreen();
   }
 
-  Splash *splash = new Splash();
+  bool splashComplete = false;
 
-  // Game game;
+  Splash *splash = new Splash();
+  Game *game = nullptr;
 
   while (!WindowShouldClose()) {
-    BeginDrawing();
-    ClearBackground(BLACK);
-    {
-      if (!splash->isComplete()) {
-        splash->draw();
-      } else {
-        // game.Draw();
-        // game.Update();
+    if (!splashComplete) {
+      if (splash->isComplete()) {
+        splashComplete = true;
+        delete splash;
+        splash = nullptr;
+        game = new Game();
       }
+    } else {
+      game->Update();
     }
+    BeginDrawing();
+
+    ClearBackground(BLACK);
+    if (!splashComplete) {
+      splash->draw();
+    } else {
+      game->Draw();
+    }
+
     EndDrawing();
-  } // this is the while loop
-  delete splash;
+  }
+  if (game != nullptr) {
+    delete game;
+  }
+  if (splash != nullptr) {
+    delete splash;
+  }
   CloseWindow();
   return 0;
 }

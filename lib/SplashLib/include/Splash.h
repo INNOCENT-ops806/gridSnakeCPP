@@ -16,7 +16,7 @@ private:
   int currentFrame = 0;
   int framesCounter = 0;
   int framesSpeed = 8;
-  int xPerc = 10;
+  float xPerc = 0.0f;
   bool done = false;
 
   Texture2D scarfy;

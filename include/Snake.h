@@ -11,7 +11,7 @@ public:
 
   Snake();
 
-  void Draw();
-  void Update();
+  void Draw(int offsetX, int offsetY, int cellSize);
+  void Update(int cellCountX, int cellCountY);
   void Reset();
 };

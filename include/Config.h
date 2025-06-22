@@ -3,9 +3,11 @@
 #define CONFIG_H
 
 extern bool allowMove;
-extern const int cellSize;
-extern const int cellCount;
-extern const int offset;
+extern int cellSize;
+extern int cellCountX;
+extern int cellCountY;
+extern int offsetX;
+extern int offsetY;
 
 extern Color Mygreen;
 extern Color Mypurple;

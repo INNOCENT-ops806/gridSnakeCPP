@@ -2,6 +2,7 @@
 #include "../include/Config.h"
 #include "../include/GameOverScreen.h"
 #include "../include/Snake.h"
+#include <deque>
 #include <raylib.h>
 #include <raymath.h>
 
@@ -17,41 +18,67 @@ bool eventTriggered(double interval) {
 
 Game::Game() : snake(), food(snake.body), gameOverScreen() {
   InitAudioDevice();
-  eatSound = LoadSound(".Sounds/sharp-pop-328170.mp3");
-  wallSound = LoadSound("./Sounds/game-over-arcade-6435.mp3");
+  eatSound = LoadSound("Sounds/sharp-pop-328170.mp3");
+  wallSound = LoadSound("Sounds/game-over-arcade-6435.mp3");
+  gameMusic = LoadMusicStream("Sounds/game-music-loop.mp3");
+
+  SetMusicVolume(gameMusic, 0.1f);
+  PlayMusicStream(gameMusic);
+
   currentState = PLAYING;
   score = 0;
   allowMove = false;
+  cellSize = 30;
+
+  cellCountX = GetScreenWidth() / cellSize;
+  cellCountY = GetScreenHeight() / cellSize;
+
+  if (cellCountX < 1)
+    cellCountX = 1;
+  if (cellCountY < 1)
+    cellCountY = 1;
+
+  int gAreaWidthPixels = cellCountX * cellSize;
+  int gAreaHeightPixels = cellCountY * cellSize;
+
+  offsetX = (GetScreenWidth() - gAreaWidthPixels) / 2;
+  offsetY = (GetScreenHeight() - gAreaHeightPixels) / 2;
+
+  snake.Reset();
+  food.position =
+      food.generateRandomPosition(snake.body, cellCountX, cellCountY);
 }
 
 Game::~Game() {
   UnloadSound(eatSound);
   UnloadSound(wallSound);
+  UnloadMusicStream(gameMusic);
   CloseAudioDevice();
 }
 
 void Game::Draw() {
-
-  ClearBackground(Mygreen);
-  DrawRectangleLinesEx(
-      {5, 5, (float)GetScreenWidth() - 75,
-       (float)GetScreenHeight() - (float)(GetScreenWidth() * 0.05)},
-      5, BLACK);
+  ClearBackground(BLACK);
   if (currentState == PLAYING) {
-    food.Draw();
-    snake.Draw();
-    DrawText(TextFormat("Score: %i", score), GetScreenWidth() - 150, 10, 30,
-             GREEN);
+    DrawRectangleLinesEx({(float)offsetX, (float)offsetY,
+                          (float)(cellCountX * cellSize),
+                          (float)(cellCountY * cellSize)},
+                         GetScreenWidth() * 0.003, GRAY);
+    snake.Draw(offsetX, offsetY, cellSize);
+    food.Draw(offsetX, offsetY, cellSize);
+    DrawText(TextFormat("Score: %i", score),
+             GetScreenWidth() - GetScreenWidth() * 0.12,
+             GetScreenHeight() - GetScreenHeight() * 0.10, 30, GREEN);
   } else if (currentState == GAME_OVER) {
     gameOverScreen.Draw();
   }
 }
 
 void Game::Update() {
+  UpdateMusicStream(gameMusic);
   if (currentState == PLAYING) {
     if (eventTriggered(0.2)) {
       allowMove = true;
-      snake.Update();
+      snake.Update(cellCountX, cellCountY);
     }
     if (IsKeyPressed(KEY_UP) && snake.direction.y != 1 && allowMove) {
       snake.direction = Vector2{0, -1};
@@ -71,34 +98,21 @@ void Game::Update() {
     }
 
     CheckCollisionWithFood();
-    CheckCollisionWithEdges();
     CheckCollisionWithTail();
   } else if (currentState == GAME_OVER) {
     if (gameOverScreen.ShouldRestart()) {
       Reset();
     }
   }
-  if (currentState == PLAYING) {
-    DrawText("STATE: PLAYING", 10, 10, 20, BLUE);
-  } else {
-    DrawText("STATE: GAME OVER", 10, 10, 20, RED);
-  }
-}
-void Game::CheckCollisionWithFood() {
-  if (Vector2Equals(snake.body[0], food.position)) {
-    food.position = food.generateRandomPosition(snake.body);
-    snake.addSegment = true;
-    score++;
-    PlaySound(eatSound);
-  }
 }
 
-void Game::CheckCollisionWithEdges() {
-  if (snake.body[0].x == cellCount || snake.body[0].x == -1) {
-    GameOver();
-  }
-  if (snake.body[0].y == cellCount || snake.body[0].y == -1) {
-    GameOver();
+void Game::CheckCollisionWithFood() {
+  if (Vector2Equals(snake.body[0], food.position)) {
+    food.position =
+        food.generateRandomPosition(snake.body, cellCountX, cellCountY);
+    snake.addSegment = true;
+    score += 10;
+    PlaySound(eatSound);
   }
 }
 
@@ -113,12 +127,16 @@ void Game::CheckCollisionWithTail() {
 void Game::GameOver() {
   currentState = GAME_OVER;
   PlaySound(wallSound);
+  StopMusicStream(gameMusic);
 }
 
 void Game::Reset() {
   snake.Reset();
-  food.position = food.generateRandomPosition(snake.body);
+  food.position =
+      food.generateRandomPosition(snake.body, cellCountX, cellCountY);
   score = 0;
   currentState = PLAYING;
   allowMove = false;
+  SetMusicVolume(gameMusic, 0.1f);
+  PlayMusicStream(gameMusic);
 }

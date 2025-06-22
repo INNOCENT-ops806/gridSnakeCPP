@@ -6,7 +6,6 @@
 #include <raylib.h>
 
 bool eventTriggered(double interval);
-
 enum GameState {
   PLAYING,
   GAME_OVER,
@@ -22,6 +21,7 @@ public:
   int score;
   Sound eatSound;
   Sound wallSound;
+  Music gameMusic;
 
   Game();
   ~Game();
@@ -30,7 +30,6 @@ public:
   void Update();
 
   void CheckCollisionWithFood();
-  void CheckCollisionWithEdges();
   void CheckCollisionWithTail();
   void GameOver();
   void Reset();

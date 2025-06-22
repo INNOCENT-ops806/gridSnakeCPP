@@ -2,9 +2,11 @@
 #include <raylib.h>
 
 bool allowMove = false;
-const int cellSize = 30;
-const int cellCount = 25;
-const int offset = 75;
+int cellSize;
+int cellCountX;
+int cellCountY;
+int offsetX;
+int offsetY;
 
 Color Mygreen = {173, 204, 96, 255};
 Color Mypurple = {123, 50, 250, 235};
