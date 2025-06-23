@@ -1,6 +1,7 @@
 #pragma once
 #include "Food.h"
 #include "GameOverScreen.h"
+#include "Menu.h"
 #include "Snake.h"
 #include <deque>
 #include <raylib.h>
@@ -9,7 +10,7 @@ bool eventTriggered(double interval);
 enum GameState {
   PLAYING,
   GAME_OVER,
-  // PAUSED
+  PAUSED
   // MENU
 };
 
@@ -35,5 +36,6 @@ public:
   void Reset();
   GameState currentState;
   GameOverScreen gameOverScreen;
+  Menu menu;
   bool allowMove;
 };

@@ -13,7 +13,8 @@ SRC_MAIN_PROJECT = $(SRCDIR)/main.cpp \
                    $(SRCDIR)/Food.cpp \
                    $(SRCDIR)/GameOverScreen.cpp \
                    $(SRCDIR)/Utils.cpp \
-                   $(SRCDIR)/Config.cpp
+                   $(SRCDIR)/Config.cpp \
+                   $(SRCDIR)/Menu.cpp
 
 SRC_SPLASHLIB = $(SPLASHLIB_SRCDIR)/Splash.cpp
 
@@ -24,7 +25,7 @@ CXX = g++
 CXXFLAGS = -Wall -std=c++17
 
 CXXFLAGS += -I$(INCLUDEDIR)
-CXXFLAGS += -I$(SPLASHLIB_DIR)/include
+CXXFLAGS += -I$(SPLASHLIB_DIR)/include -g
 
 LDFLAGS = -L$(SPLASHLIB_DIR)/lib
 

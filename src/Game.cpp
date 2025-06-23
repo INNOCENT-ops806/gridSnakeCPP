@@ -1,6 +1,7 @@
 #include "../include/Game.h"
 #include "../include/Config.h"
 #include "../include/GameOverScreen.h"
+#include "../include/Menu.h"
 #include "../include/Snake.h"
 #include <deque>
 #include <raylib.h>
@@ -16,7 +17,7 @@ bool eventTriggered(double interval) {
   return false;
 }
 
-Game::Game() : snake(), food(snake.body), gameOverScreen() {
+Game::Game() : snake(), food(snake.body), gameOverScreen(), menu() {
   InitAudioDevice();
   eatSound = LoadSound("Sounds/sharp-pop-328170.mp3");
   wallSound = LoadSound("Sounds/game-over-arcade-6435.mp3");

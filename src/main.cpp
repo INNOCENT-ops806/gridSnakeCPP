@@ -1,7 +1,6 @@
 #include "../include/Config.h"
 #include "../include/Game.h"
 #include "../lib/SplashLib/include/Splash.h"
-#include <raylib.h>
 
 int main() {
   int const screenwidth = 1366;
@@ -15,7 +14,6 @@ int main() {
   }
 
   bool splashComplete = false;
-
   Splash *splash = new Splash();
   Game *game = nullptr;
 
@@ -28,13 +26,20 @@ int main() {
         game = new Game();
       }
     } else {
-      game->Update();
+      if (game->menu.IsComplete() == false) {
+        game->menu.Update();
+      } else {
+        game->Update();
+      }
     }
-    BeginDrawing();
 
+    BeginDrawing();
     ClearBackground(BLACK);
+
     if (!splashComplete) {
       splash->draw();
+    } else if (game->menu.IsComplete() == false) {
+      game->menu.Draw();
     } else {
       game->Draw();
     }
