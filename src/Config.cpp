@@ -7,6 +7,8 @@ int cellCountX;
 int cellCountY;
 int offsetX;
 int offsetY;
+float snakeSpeed = 0.2;
+float snakeSpeedLimit = 0.05;
 
 Color Mygreen = {173, 204, 96, 255};
 Color Mypurple = {123, 50, 250, 235};

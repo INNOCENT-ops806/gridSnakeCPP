@@ -77,7 +77,7 @@ void Game::Draw() {
 void Game::Update() {
   UpdateMusicStream(gameMusic);
   if (currentState == PLAYING) {
-    if (eventTriggered(0.2)) {
+    if (eventTriggered(snakeSpeed)) {
       allowMove = true;
       snake.Update(cellCountX, cellCountY);
     }
@@ -111,9 +111,14 @@ void Game::CheckCollisionWithFood() {
   if (Vector2Equals(snake.body[0], food.position)) {
     food.position =
         food.generateRandomPosition(snake.body, cellCountX, cellCountY);
+    PlaySound(eatSound);
     snake.addSegment = true;
     score += 10;
-    PlaySound(eatSound);
+    if (snakeSpeed > snakeSpeedLimit) {
+      snakeSpeed -= 0.015;
+    } else {
+      snakeSpeed -= 0;
+    }
   }
 }
 

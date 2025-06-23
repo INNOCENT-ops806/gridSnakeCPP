@@ -8,6 +8,8 @@ extern int cellCountX;
 extern int cellCountY;
 extern int offsetX;
 extern int offsetY;
+extern float snakeSpeed;
+extern float snakeSpeedLimit;
 
 extern Color Mygreen;
 extern Color Mypurple;
