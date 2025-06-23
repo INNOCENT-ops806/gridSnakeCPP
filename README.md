@@ -28,3 +28,4 @@ If you want to improve or just help me in any way please don't be afraid I am no
 
 you can find how to make this cool game here: [YouTube](https://www.youtube.com/watch?v=LGqsnM_WEK4)
 oh and the game was created using a cool game engine called raylib and you can find it here: [raylib](https://github.com/raysan5/raylib)
+echo "This is a new test line for the commit hook." >> README.md
