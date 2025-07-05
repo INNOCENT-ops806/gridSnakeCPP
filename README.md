@@ -2,7 +2,7 @@
 
 A fun snake game with loved ones :)
 
---> [!WARNING]
+[!WARNING]
 
 > This game is for Unix-like systems as it uses make to run the game
 
@@ -26,13 +26,10 @@ I plan to make the game more fun and visually appealing in the future hoping I c
 
 ![game Screenshot in brothers](Images/GridSnakeGamev1.png)
 
-### Running the game
-
-![Running the game](videos/finalVgridSnakeGame.mp4)
-
 ### Installation
 
 MAKE SURE YOU HAVE GIT AND MAKE IN YOU INSTALLED IN YOU SYSTEM
+
 You must first download/clone the repo into your computer by copying and paste this in your terminal
 
 ```sh
