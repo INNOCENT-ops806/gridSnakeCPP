@@ -14,7 +14,8 @@ SRC_MAIN_PROJECT = $(SRCDIR)/main.cpp \
                    $(SRCDIR)/GameOverScreen.cpp \
                    $(SRCDIR)/Utils.cpp \
                    $(SRCDIR)/Config.cpp \
-                   $(SRCDIR)/Menu.cpp
+									 $(SRCDIR)/Menu.cpp    \
+                   $(SRCDIR)/PausedMenu.cpp
 
 SRC_SPLASHLIB = $(SPLASHLIB_SRCDIR)/Splash.cpp
 

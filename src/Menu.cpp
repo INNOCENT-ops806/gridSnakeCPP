@@ -5,8 +5,8 @@
 
 Menu::Menu() : m_isComplete(false), m_selectedIndex(0) {
   m_options.push_back("New Game");
-  m_options.push_back("Settings");
   m_options.push_back("Press [esc] or [Q] to Quit");
+  m_options.push_back("[H] - To pause | resume game");
 }
 
 Vector2 Menu::GetTextPosition(const char *text, int fontSize, int screenWidth,
