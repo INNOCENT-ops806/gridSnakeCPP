@@ -45,11 +45,16 @@ cd gridSnakeCPP
 
 Then to run the game you must first run this command:
 
-`make`
+```sh
+make
+```
 
 And then
 
-`./main.out` which will create an instance of the game and the game will start rendering on your screen
+```sh
+./main.out
+```
+which will create an instance of the game and the game will start rendering on your screen
 
 ## Contribution
 
