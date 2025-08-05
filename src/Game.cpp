@@ -17,7 +17,8 @@ bool eventTriggered(double interval) {
   return false;
 }
 
-Game::Game() : snake(), food(snake.body), gameOverScreen(), menu() {
+Game::Game()
+    : snake(), food(snake.body), gameOverScreen(), menu(), pausedMenu() {
   InitAudioDevice();
   eatSound = LoadSound("Sounds/sharp-pop-328170.mp3");
   wallSound = LoadSound("Sounds/game-over-arcade-6435.mp3");
@@ -71,11 +72,22 @@ void Game::Draw() {
              GetScreenHeight() - GetScreenHeight() * 0.10, 30, GREEN);
   } else if (currentState == GAME_OVER) {
     gameOverScreen.Draw();
+  } else if (currentState == PAUSED) {
+    pausedMenu.Draw();
   }
 }
 
 void Game::Update() {
   UpdateMusicStream(gameMusic);
+
+  if (IsKeyPressed(KEY_H)) {
+    if (currentState == PLAYING) {
+      currentState = PAUSED;
+    } else if (currentState == PAUSED) {
+      currentState = PLAYING;
+    }
+  }
+
   if (currentState == PLAYING) {
     if (eventTriggered(0.2)) {
       allowMove = true;

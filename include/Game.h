@@ -2,17 +2,13 @@
 #include "Food.h"
 #include "GameOverScreen.h"
 #include "Menu.h"
+#include "PauseMenu.h"
 #include "Snake.h"
 #include <deque>
 #include <raylib.h>
 
 bool eventTriggered(double interval);
-enum GameState {
-  PLAYING,
-  GAME_OVER,
-  PAUSED
-  // MENU
-};
+enum GameState { PLAYING, GAME_OVER, PAUSED };
 
 class Game {
 public:
@@ -37,5 +33,6 @@ public:
   GameState currentState;
   GameOverScreen gameOverScreen;
   Menu menu;
+  PausedMenu pausedMenu;
   bool allowMove;
 };
