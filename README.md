@@ -43,6 +43,14 @@ then go into the gridSnakeCPP directory by this command:
 cd gridSnakeCPP
 ```
 
+### If you do not have raylib installed in you system run the install.sh script which will guide you through the installation
+
+Firstly make it executable by:
+
+```sh
+ chmod +x install.sh
+```
+
 Then to run the game you must first run this command:
 
 ```sh
@@ -54,6 +62,7 @@ And then
 ```sh
 ./main.out
 ```
+
 which will create an instance of the game and the game will start rendering on your screen
 
 ## Contribution
