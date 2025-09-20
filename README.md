@@ -24,7 +24,7 @@ I plan to make the game more fun and visually appealing in the future hoping I c
 
 ### Game Screenshot in terminal
 
-![game Screenshot in brothers](Images/GridSnakeGamev1.png)
+![game Screenshot in brothers](images/GridSnakeGamev1.png)
 
 ### Installation
 
