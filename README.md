@@ -24,7 +24,11 @@ I plan to make the game more fun and visually appealing in the future hoping I c
 
 ### Game Screenshot in terminal
 
-![game Screenshot in brothers](images/GridSnakeGamev1.png)
+![playing](images/v0_1_0_playing.png)
+
+### Paused Menu Screenshot
+
+![paused](images/pausedMenu.png)
 
 ### Installation
 
@@ -63,7 +67,7 @@ And then
 ./main.out
 ```
 
-which will create an instance of the game and the game will start rendering on your screen
+Which will create an instance of the game and the game will start rendering on your screen
 
 ## Contribution
 
@@ -71,5 +75,7 @@ If you want to improve or just help me in any way please don't be afraid I am no
 
 ## References
 
-you can find how to make this cool game here: [YouTube](https://www.youtube.com/watch?v=LGqsnM_WEK4)
+Used static Splash: [SplashLib](https://github.com/INNOCENT-ops806/SplashLib)
+
+You can find how to make this cool game here: [YouTube](https://www.youtube.com/watch?v=LGqsnM_WEK4)
 oh and the game was created using a cool game engine called raylib and you can find it here: [raylib](https://github.com/raysan5/raylib)
